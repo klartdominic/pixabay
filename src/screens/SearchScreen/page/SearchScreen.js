@@ -2,26 +2,21 @@ import React, {useState, useCallback, useContext} from 'react';
 import {Page, Text, TextInputIcon, Button} from '../../../components';
 import {View} from 'react-native';
 import styles from '../styles/Styles';
-import Http from '../../../utils/Http';
 import {Context} from '../../../context';
+import {getData} from '../../../services/getData';
 
 const SearchScreen = ({navigation}) => {
   const [value, setValue] = useState('');
-  const {setPixabayResponse} = useContext(Context);
+  const {setPixabayResponse, setSearched} = useContext(Context);
 
   const handleSearch = useCallback(() => {
-    Http.get(
-      `https://pixabay.com/api/?key=30941299-4f34efe2998493180809f3c77&q=${value.toLowerCase()}&image_type=photo`,
-    )
-      .then(response => {
-        if (response.status === 200) {
-          setPixabayResponse(response.data);
-          navigation.navigate('DataList');
-        }
-      })
-      .catch(error => {
-        console.warn('error', error);
-      });
+    setSearched(value);
+    getData(value, 1).then(response => {
+      if (response.status === 200) {
+        setPixabayResponse(response.data?.hits);
+        navigation.navigate('DataList', value);
+      }
+    });
   }, [value]);
 
   return (

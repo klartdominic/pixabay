@@ -9,11 +9,17 @@ export const Context = createContext();
 //------------------------------------------------------------------
 export const ContextProvider = ({children}) => {
   const [pixabayResponse, setPixabayResponse] = useState({});
+  const [page, setPage] = useState(1);
+  const [searched, setSearched] = useState(1);
   return (
     <Context.Provider
       value={{
         pixabayResponse,
         setPixabayResponse,
+        page,
+        setPage,
+        searched,
+        setSearched,
       }}>
       {children}
     </Context.Provider>
