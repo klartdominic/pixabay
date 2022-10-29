@@ -11,6 +11,5 @@ export default StyleSheet.create({
     borderColor: 'gray',
     width: '100%',
     marginBottom: 5,
-    // height: 200,
   },
 });

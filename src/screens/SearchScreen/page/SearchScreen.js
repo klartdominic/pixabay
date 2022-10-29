@@ -6,18 +6,16 @@ import {Context} from '../../../context';
 import {getData} from '../../../services/getData';
 
 const SearchScreen = ({navigation}) => {
-  const [value, setValue] = useState('');
-  const {setPixabayResponse, setSearched} = useContext(Context);
+  const {setPixabayResponse, searched, setSearched} = useContext(Context);
 
   const handleSearch = useCallback(() => {
-    setSearched(value);
-    getData(value, 1).then(response => {
+    getData(searched, 1).then(response => {
       if (response.status === 200) {
         setPixabayResponse(response.data?.hits);
-        navigation.navigate('DataList', value);
+        navigation.navigate('DataList', searched);
       }
     });
-  }, [value]);
+  }, [searched]);
 
   return (
     <Page style={styles.container}>
@@ -25,8 +23,8 @@ const SearchScreen = ({navigation}) => {
 
       <View style={styles.textInputContainer}>
         <TextInputIcon
-          value={value}
-          setValue={setValue}
+          value={searched}
+          setValue={setSearched}
           iconFamily="FA"
           iconName="search"
           iconSize={30}

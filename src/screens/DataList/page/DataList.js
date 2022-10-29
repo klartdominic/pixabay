@@ -1,5 +1,5 @@
 import React, {useContext, useCallback, useState} from 'react';
-import {View, TouchableOpacity, Text, FlatList, Image} from 'react-native';
+import {TouchableOpacity, Text, FlatList, Image} from 'react-native';
 import {Page} from '../../../components';
 import {Context} from '../../../context';
 import {getData} from '../../../services/getData';
@@ -16,12 +16,11 @@ const DataList = ({navigation}) => {
         style={styles.items}
         onPress={() => handleOnPress(item)}>
         <Image source={item.previewURL} />
-        <Text>{item.user}</Text>
-        <Text>{item.tags}</Text>
-        <Text>{item.views}</Text>
-        <Text>{item.downloads}</Text>
-        <Text>{item.likes}</Text>
-        <Text>{item.comments}</Text>
+        <Text>user: {item.user}</Text>
+        <Text>view: {item.views}</Text>
+        <Text>downloads: {item.downloads}</Text>
+        <Text>likes: {item.likes}</Text>
+        <Text>comments: {item.comments}</Text>
       </TouchableOpacity>
     ),
     [],
@@ -49,7 +48,7 @@ const DataList = ({navigation}) => {
   };
 
   const handleOnPress = data => {
-    navigation.navigate('ItemDetails', data);
+    navigation.navigate('ItemDetails', {data: data});
   };
 
   return (

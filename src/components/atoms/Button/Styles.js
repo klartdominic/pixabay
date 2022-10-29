@@ -10,4 +10,7 @@ export default StyleSheet.create({
     borderWidth: 1,
     borderRadius: 15,
   },
+  tag: {
+    borderWidth: 1,
+  },
 });
