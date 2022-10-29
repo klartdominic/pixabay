@@ -5,14 +5,16 @@ import styles from './Styles';
 const TextInputComponent = ({
   type = 'primary',
   value,
-  setValue,
+  setValue = () => {},
   placeholder = '',
 }) => {
   return (
     <TextInput
       style={[styles.common, styles[type]]}
       value={value}
-      onChangeText={setValue}
+      onChangeText={text => {
+        setValue(text);
+      }}
       placeholder={placeholder}
     />
   );

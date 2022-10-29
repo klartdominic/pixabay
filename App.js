@@ -12,18 +12,16 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 // Navigator
 import AppNavigation from './src/navigation/AppNavigation';
 import {NativeBaseProvider} from 'native-base';
+import {ContextProvider} from './src/context';
 
 const App = () => {
-  useEffect(() => {
-    // uncomment below to hide the splash screen
-    // SplashScreen.hide();
-  }, []);
-
   return (
     <NativeBaseProvider>
-      <SafeAreaProvider>
-        <AppNavigation />
-      </SafeAreaProvider>
+      <ContextProvider>
+        <SafeAreaProvider>
+          <AppNavigation />
+        </SafeAreaProvider>
+      </ContextProvider>
     </NativeBaseProvider>
   );
 };

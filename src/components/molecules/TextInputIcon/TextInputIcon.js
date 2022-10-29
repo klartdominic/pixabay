@@ -3,7 +3,15 @@ import {View} from 'react-native';
 import {Icon, TextInput} from '../../atoms';
 import styles from './Styles';
 
-const TextInputIcon = ({control, name, iconFamily, iconName, placeholder}) => {
+const TextInputIcon = ({
+  control,
+  name,
+  value,
+  setValue,
+  iconFamily,
+  iconName,
+  placeholder,
+}) => {
   return (
     <View
       style={[styles.container, styles.paddingHorizontal, styles.alignment]}>
@@ -11,6 +19,8 @@ const TextInputIcon = ({control, name, iconFamily, iconName, placeholder}) => {
         <TextInput
           control={control}
           name={name}
+          value={value}
+          setValue={setValue}
           type="plain"
           placeholder={placeholder}
         />
